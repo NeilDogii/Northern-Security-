@@ -1,0 +1,19 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Neil",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1",
+    "fs-extra": "^10.0.0",
+    "mongoose": "^5.13.2",
+    "noblox.js": "^4.8.6"
+  }
+}
