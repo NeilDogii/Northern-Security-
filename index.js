@@ -1,10 +1,12 @@
-const {Client, Discord} = require("discord.js")
-const client = new Client();
+const {Client, Discord, Intents} = require("discord.js")
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 const config = require("./config.json")
-require(functions)(client)
-client.login(config.token)
+
+require("./functions")(client)
+
 
 module.export = {
-    client: client,
-    Discord: Discord
+    client: client
 }
+
+client.login(config.token)
