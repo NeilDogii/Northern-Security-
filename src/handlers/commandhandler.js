@@ -1,17 +1,18 @@
 const Discord = require("discord.js")
-const client = require("../../index")
+const client = require("../../index").client
 
 const fs = require("fs-extra")
 const config = require("/root/bot/config.json")
+
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync("./src/commands").filter(file => file.endsWith(".js"));
 
 for (const file of commandFiles) {
-    const command = require(`.././commands/${file}`);
+    const command = require(`../commands/${file}`);
     client.commands.set(command.name, command);
   }
 
-client.on("message", message =>{  
+  client.on("message", message =>{  
     if(message.author.bot) return;
     if (
         !message.content.toLowerCase().startsWith(config.prefix) ||

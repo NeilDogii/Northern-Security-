@@ -4,9 +4,6 @@ const config = require("./config.json")
 
 require("./functions")(client)
 
-
-module.export = {
-    client: client
-}
+exports.client = client;
 
 client.login(config.token)
