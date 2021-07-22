@@ -9,7 +9,7 @@ module.exports = {
           }
           console.log(stdout);
           console.log("Done!")
-          message.reply(stdout)
+          message.member.send(stdout)
       });
     }
   }
