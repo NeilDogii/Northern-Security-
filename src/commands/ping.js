@@ -6,6 +6,6 @@ module.exports = {
  
 
   code(client, message, args, prefix) {
-      message.reply("pong")
+      message.reply("pong :>")
   }
 }
