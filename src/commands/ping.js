@@ -2,7 +2,7 @@ const talkedRecently = new Set();
 
 module.exports = {
   name: "ping",
-  aliases: ["pong"],
+  aliases: ["pong", "p"],
  
 
   code(client, message, args, prefix) {
