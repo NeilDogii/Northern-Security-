@@ -1,5 +1,5 @@
 module.exports = {
-  name: "addgb",
+  name: "removegb",
 
   code(client, message, args, prefix, db) {
     let embed = new Discord.MessageEmbed()
@@ -12,22 +12,17 @@ module.exports = {
     
     if (!args[0]) return message.reply("Missing UserId")
 
-    gdb.findOne({
+    gdb.findOneAndDelete({
       userid: args[0],
     }, (err, data) => {
       if (err) console.log(err)
       if (data) {
-        embed.setColor("RED")
-        embed.setDescription('**Failed** - Already in database')
+        embed.setColor("GREEN")
+        embed.setDescription('**Done**')
         return message.channel.send(embed)
       } else {
-        let newd = new gbd({
-          userid: args[0],
-          whobanned: message.author.tag
-        })
-        newd.save().catch(err => console.log(err));
-        embed.setColor("GREEN")
-        embed.setDescription('Done!')
+        embed.setColor("RED")
+        embed.setDescription("**Failed** Can't find user in database")
         return message.channel.send(embed)
       }
     })
