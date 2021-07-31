@@ -9,7 +9,7 @@ app.get('/globalban/check', (req, res) => {
 
   if (!userid) return res.json(false)
   gbd.findOne({
-
+    userid: userid
   }, (err, data) => {
     if (err) console.log(err)
     if (data) {
@@ -19,4 +19,3 @@ app.get('/globalban/check', (req, res) => {
     }
   })
 });
-console.log(gbd)
