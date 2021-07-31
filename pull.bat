@@ -1,2 +1,3 @@
 cd bot
 git pull
+
