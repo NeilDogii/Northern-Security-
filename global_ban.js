@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const tempdata = mongoose.model("globalban", mongoose.Schema({
+const gbd = mongoose.model("globalban", mongoose.Schema({
   userid: Number,
   whobanned: String
 }));
@@ -15,7 +15,7 @@ app.get('/globalban/check', (req, res) => {
   const { userid } = req.query;
 
   if (!userid) return res.json(false)
-  tempdata.findOne({
+  gbd.findOne({
 
   }, (err, data) => {
     if (err) console.log(err)
