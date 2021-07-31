@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const gbd = require("../mongodb/mongodb").client.db
 
 app.listen(8888, () => console.log('Listening... to the port ' + 8888));
 
@@ -18,3 +19,4 @@ app.get('/globalban/check', (req, res) => {
     }
   })
 });
+console.log(gbd)
