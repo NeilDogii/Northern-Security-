@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const client = require("../../index").client
+const gbd = require("/root/bot/src/mongodb/mongodb").gdb
 
 const fs = require("fs-extra")
 const config = require("/root/bot/config.json")
@@ -42,7 +43,7 @@ for (const file of commandFiles) {
       let prefix = config.prefix;
 
       try {
-        command.code(client, message, args, prefix);
+        command.code(client, message, args, prefix, gdb);
        
       } catch (err) {
         console.log(err);
