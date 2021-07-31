@@ -12,7 +12,7 @@ module.exports = {
     
     if (!args[0]) return message.reply("Missing UserId")
 
-    gdb.findOneAndDelete({
+    db.findOneAndDelete({
       userid: args[0],
     }, (err, data) => {
       if (err) console.log(err)

@@ -12,7 +12,7 @@ module.exports = {
     
     if (!args[0]) return message.reply("Missing UserId")
 
-    gdb.findOne({
+    db.findOne({
       userid: args[0],
     }, (err, data) => {
       if (err) console.log(err)
@@ -21,7 +21,7 @@ module.exports = {
         embed.setDescription('**Failed** - Already in database')
         return message.channel.send(embed)
       } else {
-        let newd = new gbd({
+        let newd = new db({
           userid: args[0],
           whobanned: message.author.tag
         })
