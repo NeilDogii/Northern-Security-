@@ -24,11 +24,11 @@ module.exports = {
 					`**UserId:** ${data.userid}\n`,
 					`**WhoBanned:** ${data.whobanned}`
 				])
-        return message.channel.send(embed)
+        return message.channel.send({embed: embed})
 			} else {
         embed.setColor("RED")
         embed.setDescription("**Failed** Can't find user in database")
-        return message.channel.send(embed)
+        return message.channel.send({embed: embed})
 			}
 		})
   }

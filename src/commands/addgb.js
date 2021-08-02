@@ -9,7 +9,7 @@ module.exports = {
     if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104") {
       embed.setColor("RED")
       embed.setDescription("**Failed** - You Don't Have Permission")
-      return message.channel.send(embed)
+      return message.channel.send({embed: embed})
     }
     
     if (!args[0]) return message.reply("Missing UserId")
@@ -21,7 +21,7 @@ module.exports = {
       if (data) {
         embed.setColor("RED")
         embed.setDescription('**Failed** - Already in database')
-        return message.channel.send(embed)
+        return message.channel.send({embed: embed})
       } else {
         let newd = new db({
           userid: args[0],
@@ -30,7 +30,7 @@ module.exports = {
         newd.save().catch(err => console.log(err));
         embed.setColor("GREEN")
         embed.setDescription('Done!')
-        return message.channel.send(embed)
+        return message.channel.send({embed: embed})
       }
     })
   }
