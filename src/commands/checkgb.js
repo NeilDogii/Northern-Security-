@@ -9,7 +9,7 @@ module.exports = {
     if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104") {
       embed.setColor("RED")
       embed.setDescription("**Failed** - You Don't Have Permission")
-      return message.channel.send(embed)
+      return message.channel.send({embed: [embed]})
     }
     
     if (!args[0]) return message.reply("Missing UserId")
@@ -24,11 +24,11 @@ module.exports = {
 					`**UserId:** ${data.userid}\n`,
 					`**WhoBanned:** ${data.whobanned}`
 				])
-        return message.channel.send({embed: embed})
+        return message.channel.send({embed: [embed]})
 			} else {
         embed.setColor("RED")
         embed.setDescription("**Failed** Can't find user in database")
-        return message.channel.send({embed: embed})
+        return message.channel.send({embed: [embed]})
 			}
 		})
   }
