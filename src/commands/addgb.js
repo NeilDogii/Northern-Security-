@@ -16,18 +16,14 @@ module.exports = {
     const axios = require('axios');
 axios.get('https://users.roblox.com/v1/users/' + args[0])
   .then(function (response) {
-
-
-
-
-
+    console.log(response)
     db.findOne({
       userid: args[0],
     }, (err, data) => {
       if (err) console.log(err)
       if (data) {
         embed.setColor("RED")
-        embed.setDescription('**Failed** - Already in database')
+        embed.setDescription(`**Failed** - ${response.data.name} is already in database`)
         return message.channel.send({embeds: [embed]})
       } else {
         let newd = new db({
@@ -36,7 +32,7 @@ axios.get('https://users.roblox.com/v1/users/' + args[0])
         })
         newd.save().catch(err => console.log(err));
         embed.setColor("GREEN")
-        embed.setDescription('Done!')
+        embed.setDescription('Banned ' + response.data.name)
         return message.channel.send({embeds: [embed]})
       }
     })
