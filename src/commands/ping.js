@@ -2,10 +2,9 @@ const talkedRecently = new Set();
 
 module.exports = {
   name: "ping",
-  aliases: ["pong", "p"],
+  aliases: ["p"],
  
-
   code(client, message, args, prefix) {
-      message.reply("pong :>")
+      message.channel.send("Pinging...").then(m => m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms`))
   }
 }
