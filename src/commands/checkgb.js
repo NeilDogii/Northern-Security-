@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const axios = require('axios');
 
 module.exports = {
   name: "checkgb",
@@ -41,10 +42,10 @@ module.exports = {
         })
       })
       .catch(function (error) {
-            // handle error      
-            embed.setColor("RED")
-            embed.setDescription(`**Failed** - Invalid UserId (${args[0]})`)
-            return message.channel.send({ embeds: [embed] })
+        // handle error      
+        embed.setColor("RED")
+        embed.setDescription(`**Failed** - Invalid UserId (${args[0]})`)
+        return message.channel.send({ embeds: [embed] })
       })
   }
 }
