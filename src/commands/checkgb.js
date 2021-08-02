@@ -28,7 +28,7 @@ module.exports = {
           if (data) {
             embed.setColor("GREEN")
             embed.setDescription(
-              `**UserName:** ${response.data.name}\m`+
+              `**UserName:** ${response.data.name}\n`+
               `**UserId:** ${data.userid}\n`+
               `**WhoBanned:** ${data.whobanned}\n`+
               `**BanDate:** ${data.bandate}`
