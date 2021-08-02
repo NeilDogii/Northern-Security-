@@ -24,7 +24,7 @@ module.exports = {
         return message.channel.send({ embeds: [embed] })
       } else {
         embed.setColor("RED")
-        embed.setDescription("**Failed** Can't find user in database")
+        embed.setDescription("**Failed** - Can't find user in database")
         return message.channel.send({ embeds: [embed] })
       }
     })

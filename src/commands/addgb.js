@@ -39,8 +39,10 @@ module.exports = {
         })
       })
       .catch(function (error) {
-        // handle error
-        return message.reply("Invalid ID")
+        // handle error      
+        embed.setColor("RED")
+        embed.setDescription("**Failed** - Invalid ID")
+        return message.channel.send({ embeds: [embed] })
       })
   }
 }
