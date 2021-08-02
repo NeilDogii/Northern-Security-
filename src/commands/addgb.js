@@ -6,17 +6,20 @@ module.exports = {
   code(client, message, args, prefix, db) {
     let embed = new Discord.MessageEmbed()
 
-    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104") {
+    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104" && message.author.id !== "424639704122654731" && message.author.id !== "430964083160776705") {
       embed.setColor("RED")
       embed.setDescription("**Failed** - You Don't Have Permission")
-<<<<<<< HEAD
       return message.channel.send({embeds: [embed]})
-=======
-      return message.channel.send({embed: [embed]})
->>>>>>> e2811996f42239fb5176a358fdc05e6d54217819
     }
     
     if (!args[0]) return message.reply("Missing UserId")
+    const axios = require('axios');
+axios.get('https://users.roblox.com/v1/users/' + args[0])
+  .then(function (response) {
+
+
+
+
 
     db.findOne({
       userid: args[0],
@@ -25,11 +28,7 @@ module.exports = {
       if (data) {
         embed.setColor("RED")
         embed.setDescription('**Failed** - Already in database')
-<<<<<<< HEAD
         return message.channel.send({embeds: [embed]})
-=======
-        return message.channel.send({embed: [embed]})
->>>>>>> e2811996f42239fb5176a358fdc05e6d54217819
       } else {
         let newd = new db({
           userid: args[0],
@@ -38,12 +37,13 @@ module.exports = {
         newd.save().catch(err => console.log(err));
         embed.setColor("GREEN")
         embed.setDescription('Done!')
-<<<<<<< HEAD
         return message.channel.send({embeds: [embed]})
-=======
-        return message.channel.send({embed: [embed]})
->>>>>>> e2811996f42239fb5176a358fdc05e6d54217819
       }
     })
+  })
+  .catch(function (error) {
+ // handle error
+ return message.reply("Invalid ID")
+})
   }
 }

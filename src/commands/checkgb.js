@@ -6,10 +6,10 @@ module.exports = {
   code(client, message, args, prefix, db) {
     let embed = new Discord.MessageEmbed()
 
-    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104") {
+    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104" && message.author.id !== "424639704122654731" && message.author.id !== "430964083160776705") {
       embed.setColor("RED")
       embed.setDescription("**Failed** - You Don't Have Permission")
-      return message.channel.send({embed: [embed]})
+      return message.channel.send({embeds: [embed]})
     }
     
     if (!args[0]) return message.reply("Missing UserId")
@@ -20,15 +20,15 @@ module.exports = {
 			if (err) console.log(err)
 			if (data) {
         embed.setColor("GREEN")
-        embed.setDescription([
-					`**UserId:** ${data.userid}\n`,
+        embed.setDescription(
+					`**UserId:** ${data.userid}\n` + 
 					`**WhoBanned:** ${data.whobanned}`
-				])
-        return message.channel.send({embed: [embed]})
+				)
+        return message.channel.send({embeds: [embed]})
 			} else {
         embed.setColor("RED")
         embed.setDescription("**Failed** Can't find user in database")
-        return message.channel.send({embed: [embed]})
+        return message.channel.send({embeds: [embed]})
 			}
 		})
   }

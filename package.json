@@ -9,6 +9,7 @@
   "author": "Neil",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "canvas": "^2.8.0",
     "discord.js": "^13.0.0-dev.d433fe8.1625961832",
     "express": "^4.17.1",
