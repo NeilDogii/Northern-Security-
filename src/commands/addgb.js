@@ -13,27 +13,38 @@ module.exports = {
       return message.channel.send({ embeds: [embed] })
     }
 
-    if (!args[0]) return message.reply("Missing UserId")
+    if (!args[0]) {
+      embed.setColor("RED")
+      embed.setDescription("**Failed** - Missing UserId")
+      return message.channel.send({ embeds: [embed] })
+    }
 
-    axios.get('https://users.roblox.com/v1/users/' + args[0])
+    axios.get(`https://users.roblox.com/v1/users/${args[0]}`)
       .then(function (response) {
-        console.log(response)
         db.findOne({
           userid: args[0],
         }, (err, data) => {
           if (err) console.log(err)
           if (data) {
             embed.setColor("RED")
-            embed.setDescription(`**Failed** - ${response.data.name} is already in database`)
+            embed.setDescription(`**Failed** - ${response.data.name} is already banned`)
             return message.channel.send({ embeds: [embed] })
           } else {
+            let date_ob = new Date();
+            let date = ("0" + date_ob.getDate()).slice(-2);
+            let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+            let year = date_ob.getFullYear();
+            let hours = date_ob.getHours();
+            let minutes = date_ob.getMinutes();
+            let seconds = date_ob.getSeconds();
             let newd = new db({
               userid: args[0],
-              whobanned: message.author.tag
+              whobanned: message.author.tag,
+              bandate: `${year}-${month}-${date} ${hours}:${minutes}:${seconds} UTC`
             })
             newd.save().catch(err => console.log(err));
             embed.setColor("GREEN")
-            embed.setDescription('Banned ' + response.data.name)
+            embed.setDescription(`**Banned** - ${response.data.name} (${args[0]})`)
             return message.channel.send({ embeds: [embed] })
           }
         })
@@ -41,7 +52,7 @@ module.exports = {
       .catch(function (error) {
         // handle error      
         embed.setColor("RED")
-        embed.setDescription("**Failed** - Invalid ID")
+        embed.setDescription(`**Failed** - Invalid UserId (${args[0]})`)
         return message.channel.send({ embeds: [embed] })
       })
   }

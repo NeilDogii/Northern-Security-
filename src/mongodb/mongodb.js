@@ -8,6 +8,10 @@ const Schema = new mongoose.Schema({
     whobanned: {
       type: String,
       default: "Failed to trace"
+    },
+    bandate: {
+      type: String,
+      default: "Failed to trace"
     }
 });
 

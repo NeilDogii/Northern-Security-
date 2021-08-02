@@ -11,25 +11,40 @@ module.exports = {
       embed.setDescription("**Failed** - You Don't Have Permission")
       return message.channel.send({embeds: [embed]})
     }
-    
-    if (!args[0]) return message.reply("Missing UserId")
 
-		db.findOne({
-			userid: args[0]
-		}, (err, data) => {
-			if (err) console.log(err)
-			if (data) {
-        embed.setColor("GREEN")
-        embed.setDescription(
-					`**UserId:** ${data.userid}\n` + 
-					`**WhoBanned:** ${data.whobanned}`
-				)
-        return message.channel.send({embeds: [embed]})
-			} else {
-        embed.setColor("RED")
-        embed.setDescription("**Failed** Can't find user in database")
-        return message.channel.send({embeds: [embed]})
-			}
-		})
+    if (!args[0]) {
+      embed.setColor("RED")
+      embed.setDescription("**Failed** - Missing UserId")
+      return message.channel.send({ embeds: [embed] })
+    }
+
+    axios.get(`https://users.roblox.com/v1/users/${args[0]}`)
+      .then(function (response) {
+        db.findOne({
+          userid: args[0]
+        }, (err, data) => {
+          if (err) console.log(err)
+          if (data) {
+            embed.setColor("GREEN")
+            embed.setDescription(
+              `**UserName:** ${response.data.name}\m`+
+              `**UserId:** ${data.userid}\n`+
+              `**WhoBanned:** ${data.whobanned}`+
+              `**BanDate:** ${data.bandate}`
+            )
+            return message.channel.send({embeds: [embed]})
+          } else {
+            embed.setColor("RED")
+            embed.setDescription("**Failed** Can't find user in ban list")
+            return message.channel.send({embeds: [embed]})
+          }
+        })
+      })
+      .catch(function (error) {
+            // handle error      
+            embed.setColor("RED")
+            embed.setDescription(`**Failed** - Invalid UserId (${args[0]})`)
+            return message.channel.send({ embeds: [embed] })
+      })
   }
 }
