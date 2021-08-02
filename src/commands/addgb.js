@@ -6,7 +6,7 @@ module.exports = {
   code(client, message, args, prefix, db) {
     let embed = new Discord.MessageEmbed()
 
-    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104") {
+    if (message.author.id !== "302441957626609664" && message.author.id !== "539395263257903104" && message.author.id !== "424639704122654731") {
       embed.setColor("RED")
       embed.setDescription("**Failed** - You Don't Have Permission")
 <<<<<<< HEAD
