@@ -29,7 +29,7 @@ module.exports = {
             embed.setDescription(
               `**UserName:** ${response.data.name}\m`+
               `**UserId:** ${data.userid}\n`+
-              `**WhoBanned:** ${data.whobanned}`+
+              `**WhoBanned:** ${data.whobanned}\n`+
               `**BanDate:** ${data.bandate}`
             )
             return message.channel.send({embeds: [embed]})
