@@ -6,3 +6,4 @@ require("./functions")(client)
 exports.client = client;
 
 client.login(config.token)
+//ha L ratio
